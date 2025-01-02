@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <div>
+        <h3>My Todo list </h3>
+        <ul>
+            <% @todos.each_with_index do |todo,index| %>
+            <li><%= todo['task'] %>
+                <form method="POST" action="/delete" style="display: inline;">
+                    <input type="hidden" name="index" value="<%= todo['_id'] %>">
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+            <% end %>
+        </ul>
+        <div>
+            <h3>Add Todos</h3>
+            <form method="POST" action="/add">
+                <input type="text" name="task" placeholder="enter your task" required/>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
